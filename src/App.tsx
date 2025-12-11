@@ -25,14 +25,14 @@ const DEFAULT_DATA: AppData = {
     themeColor: "#ec4899"
   },
   photos: [
-    { id: "1", url: "/photos/Picsart_25-11-15_09-01-01.jpg" },
-    { id: "2", url: "/photos/Picsart_25-11-15_09-01-02.jpg" },
-    { id: "3", url: "/photos/Picsart_25-11-15_09-01-03.jpg" },
-    { id: "4", url: "/photos/Picsart_25-11-15_09-01-04.jpg" },
-    { id: "5", url: "/photos/Picsart_25-11-15_09-01-05.jpg" },
-    { id: "6", url: "/photos/Picsart_25-11-15_09-01-06.jpg" },
-    { id: "7", url: "/photos/Picsart_25-11-15_09-01-07.jpg" },
-    { id: "8", url: "/photos/Picsart_25-11-15_09-01-08.jpg" }
+    { id: "1", url: "/photos/photo-1.jpg" },
+    { id: "2", url: "/photos/photo-2.jpg" },
+    { id: "3", url: "/photos/photo-3.jpg" },
+    { id: "4", url: "/photos/photo-4.jpg" },
+    { id: "5", url: "/photos/photo-5.jpg" },
+    { id: "6", url: "/photos/photo-6.jpg" },
+    { id: "7", url: "/photos/photo-7.jpg" },
+    { id: "8", url: "/photos/photo-8.jpg" }
   ]
 };
 
