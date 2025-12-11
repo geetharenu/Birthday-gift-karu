@@ -1,85 +1,41 @@
-import { useState } from "react";
+import React, { useState, useRef } from "react";
 import Hero from "./components/Hero";
 import Gallery from "./components/Gallery";
+import DEFAULT_DATA from "./data"; // your DEFAULT_DATA module OR inline as earlier
 
 export default function App() {
   const [entered, setEntered] = useState(false);
+  const [musicOn, setMusicOn] = useState(true);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  const data = {
-    config: {
-      birthdayPersonName: "Karunya",
-      mainMessage: "Welcome to my birthday celebration!",
-      customBirthdayMessage: "Happy Birthday! May your day sparkle! ✨",
-      themeColor: "#ec4899",
-    },
-
-    photos: [
-      { id: "1", url: "/photos/Picsart_25-11-15_09-38-05-606.jpg" },
-      { id: "2", url: "/photos/Picsart_25-11-15_09-39-12-019.jpg" },
-      { id: "3", url: "/photos/Picsart_25-11-15_09-39-45-846.jpg" },
-      { id: "4", url: "/photos/Picsart_25-11-15_09-40-24-586.jpg" },
-      { id: "5", url: "/photos/Picsart_25-11-15_09-41-50-080.jpg" },
-      { id: "6", url: "/photos/Picsart_25-11-15_09-42-16-449.jpg" },
-      { id: "7", url: "/photos/Picsart_25-11-15_09-43-00-858.jpg" },
-      { id: "8", url: "/photos/Picsart_25-12-08_19-39-38-891.jpg" },
-    ],
+  const onEnter = () => {
+    setEntered(true);
+    // start music
+    setTimeout(() => { audioRef.current?.play().catch(()=>{}); }, 300);
+    // optional: trigger confetti/animate
   };
-
-  if (!entered) {
-    return (
-      <div
-        style={{
-          height: "100vh",
-          background: data.config.themeColor,
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-          color: "white",
-          textAlign: "center",
-        }}
-      >
-        <h1 style={{ fontSize: "40px", fontWeight: "bold" }}>
-          🎉 Happy Birthday 🎉
-        </h1>
-
-        <h2 style={{ fontSize: "32px", marginTop: "10px", fontWeight: "bold" }}>
-          {data.config.birthdayPersonName}
-        </h2>
-
-        <button
-          onClick={() => setEntered(true)}
-          style={{
-            marginTop: "30px",
-            padding: "15px 30px",
-            background: "white",
-            color: "black",
-            borderRadius: "10px",
-            fontSize: "20px",
-            fontWeight: "bold",
-          }}
-        >
-          Tap to Enter ✨
-        </button>
-
-        {/* autoplay music */}
-        <audio src="/music/birthday.mp3" autoPlay loop hidden />
-      </div>
-    );
-  }
 
   return (
     <>
-      <Hero />
-      <div style={{ padding: "20px" }}>
-        <h1 style={{ color: data.config.themeColor }}>
-          {data.config.customBirthdayMessage}
-        </h1>
+      {!entered ? <Hero onEnter={onEnter} /> : null}
 
-        <p style={{ marginTop: "10px" }}>{data.config.mainMessage}</p>
+      {entered && (
+        <main style={{ padding: 16 }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
+            <h1 style={{ margin: 0, color: DEFAULT_DATA.config.themeColor }}>{DEFAULT_DATA.config.customBirthdayMessage}</h1>
+            <button onClick={() => {
+              setMusicOn(s => !s);
+              if (!musicOn) audioRef.current?.play(); else audioRef.current?.pause();
+            }}>
+              {musicOn ? "🔊" : "🔈"}
+            </button>
+          </div>
 
-        <Gallery photos={data.photos} />
-      </div>
+          <p style={{ marginTop: 8 }}>{DEFAULT_DATA.config.mainMessage}</p>
+          <Gallery photos={DEFAULT_DATA.photos} />
+          <audio ref={audioRef} src="/music/birthday.mp3" loop />
+        </main>
+      )}
     </>
   );
 }
