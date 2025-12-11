@@ -8,8 +8,7 @@
   },
   "dependencies": {
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
-  // dev/prod dependencies summary
+    "react-dom": "^18.2.0",
 {
   "dependencies": {
     "framer-motion": "^10.12.6",
