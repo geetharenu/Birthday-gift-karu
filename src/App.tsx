@@ -2,26 +2,35 @@ import { useState } from "react";
 import Hero from "./components/Hero";
 import Gallery from "./components/Gallery";
 
-interface Photo {
-  id: string;
-  url: string;
-}
-
-const photos: Photo[] = [
-  { id: "1", url: "/photos/photo1.jpg" },
-  { id: "2", url: "/photos/photo2.jpg" },
-  { id: "3", url: "/photos/photo3.jpg" }
-];
-
 export default function App() {
   const [entered, setEntered] = useState(false);
+
+  const data = {
+    config: {
+      birthdayPersonName: "Karunya",
+      mainMessage: "Welcome to my birthday celebration!",
+      customBirthdayMessage: "Happy Birthday! May your day sparkle! ✨",
+      themeColor: "#ec4899",
+    },
+
+    photos: [
+      { id: "1", url: "/photos/Picsart_25-11-15_09-38-05-606.jpg" },
+      { id: "2", url: "/photos/Picsart_25-11-15_09-39-12-019.jpg" },
+      { id: "3", url: "/photos/Picsart_25-11-15_09-39-45-846.jpg" },
+      { id: "4", url: "/photos/Picsart_25-11-15_09-40-24-586.jpg" },
+      { id: "5", url: "/photos/Picsart_25-11-15_09-41-50-080.jpg" },
+      { id: "6", url: "/photos/Picsart_25-11-15_09-42-16-449.jpg" },
+      { id: "7", url: "/photos/Picsart_25-11-15_09-43-00-858.jpg" },
+      { id: "8", url: "/photos/Picsart_25-12-08_19-39-38-891.jpg" },
+    ],
+  };
 
   if (!entered) {
     return (
       <div
         style={{
           height: "100vh",
-          background: "#ec4899",
+          background: data.config.themeColor,
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
@@ -34,14 +43,8 @@ export default function App() {
           🎉 Happy Birthday 🎉
         </h1>
 
-        <h2
-          style={{
-            fontSize: "32px",
-            marginTop: "10px",
-            fontWeight: "bold",
-          }}
-        >
-          Karunya
+        <h2 style={{ fontSize: "32px", marginTop: "10px", fontWeight: "bold" }}>
+          {data.config.birthdayPersonName}
         </h2>
 
         <button
@@ -50,7 +53,7 @@ export default function App() {
             marginTop: "30px",
             padding: "15px 30px",
             background: "white",
-            color: "#000",
+            color: "black",
             borderRadius: "10px",
             fontSize: "20px",
             fontWeight: "bold",
@@ -59,7 +62,7 @@ export default function App() {
           Tap to Enter ✨
         </button>
 
-        {/* Background Music */}
+        {/* autoplay music */}
         <audio src="/music/birthday.mp3" autoPlay loop hidden />
       </div>
     );
@@ -68,12 +71,14 @@ export default function App() {
   return (
     <>
       <Hero />
-
       <div style={{ padding: "20px" }}>
-        <h1 style={{ color: "#ec4899" }}>Happy Birthday! 💖</h1>
-        <p style={{ marginTop: "10px" }}>Welcome to the special day celebration 🎉</p>
+        <h1 style={{ color: data.config.themeColor }}>
+          {data.config.customBirthdayMessage}
+        </h1>
 
-        <Gallery photos={photos} />
+        <p style={{ marginTop: "10px" }}>{data.config.mainMessage}</p>
+
+        <Gallery photos={data.photos} />
       </div>
     </>
   );
