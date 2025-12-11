@@ -1,34 +1,27 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useState } from "react";
+import "./Gallery.css";
 
-interface Photo { id: string; url: string; }
+type Photo = { id: string; url: string };
 
 export default function Gallery({ photos }: { photos: Photo[] }) {
-  return (
-    <section style={{ marginTop: 20 }}>
-      <h2 style={{ marginBottom: 12 }}>Memories</h2>
+  const [open, setOpen] = useState<Photo | null>(null);
 
-      <div style={{
-        display: "grid",
-        gap: 12,
-        gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))",
-      }}>
+  return (
+    <>
+      <h3 style={{ marginBottom: 12 }}>Photo Gallery</h3>
+      <div className="gallery-grid">
         {photos.map((p) => (
-          <motion.div
-            key={p.id}
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.98 }}
-            style={{ borderRadius: 12, overflow: "hidden", boxShadow: "0 6px 20px rgba(0,0,0,0.08)", background: "#fff" }}
-          >
-            <img
-              src={p.url}
-              alt="pic"
-              style={{ width: "100%", height: 140, objectFit: "cover", display: "block" }}
-              loading="lazy"
-            />
-          </motion.div>
+          <div key={p.id} className="gallery-item" onClick={() => setOpen(p)}>
+            <img src={p.url} alt={`photo-${p.id}`} />
+          </div>
         ))}
       </div>
-    </section>
+
+      {open && (
+        <div className="lightbox" onClick={() => setOpen(null)}>
+          <img src={open.url} className="lightbox-img" alt="open" />
+        </div>
+      )}
+    </>
   );
 }
