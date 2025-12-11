@@ -9,12 +9,11 @@
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
-  },
-  "devDependencies": {
-    "@types/react": "^18.2.0",
-    "@types/react-dom": "^18.2.0",
-    "@vitejs/plugin-react": "^4.0.0",
-    "typescript": "^5.2.0",
-    "vite": "^5.0.0"
+  // dev/prod dependencies summary
+{
+  "dependencies": {
+    "framer-motion": "^10.12.6",
+    "lottie-react": "^2.4.0",
+    "gsap": "^3.12.0"
   }
-}
+  }
