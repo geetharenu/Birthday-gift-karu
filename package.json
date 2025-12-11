@@ -1,18 +1,21 @@
 {
-  "name": "birthday-gift",
+  "name": "karunya-premium",
   "version": "1.0.0",
+  "private": true,
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
+    "canvas-confetti": "^1.5.1",
+    "lottie-web": "^5.9.6",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-{
-  "dependencies": {
-    "framer-motion": "^10.12.6",
-    "lottie-react": "^2.4.0",
-    "gsap": "^3.12.0"
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.0.0",
+    "typescript": "^5.1.3",
+    "vite": "^5.0.0"
   }
-  }
+}
